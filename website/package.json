@@ -4,7 +4,9 @@
     "start": "yarn add-pages-on-site && docusaurus start",
     "build": "yarn add-pages-on-site && docusaurus build",
     "swizzle": "docusaurus swizzle",
-    "deploy": "yarn add-pages-on-site && docusaurus deploy"
+    "deploy": "yarn add-pages-on-site && docusaurus deploy",
+    "write-translations": "docusaurus write-translations",
+    "write-heading-ids": "docusaurus write-heading-ids"
   },
   "dependencies": {
     "@docusaurus/core": "^2.1.0",

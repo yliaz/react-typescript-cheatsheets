@@ -3,6 +3,8 @@ import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 
+import Translate, { translate } from "@docusaurus/Translate";
+
 import Layout from "@theme/Layout";
 
 export default function Home() {
@@ -24,7 +26,7 @@ export default function Home() {
               to={useBaseUrl(siteConfig.customFields.firstDoc)}
               className="button button--lg button--outline button--primary"
             >
-              Getting started
+              <Translate>Getting started</Translate>
             </Link>
             <Link
               to={"https://discord.gg/wTGS5z9"}
