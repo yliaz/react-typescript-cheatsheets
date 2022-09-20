@@ -3,31 +3,31 @@ id: function_components
 title: 函数组件
 ---
 
-These can be written as normal functions that take a `props` argument and return a JSX element.
+声明一个函数组件可以使用一个普通的箭头函数，它接收一个 props 变量作为参数，并返回一个 JSX 元素。
 
 ```tsx
-// Declaring type of props - see "Typing Component Props" for more examples
+// 定义 props 的类型，你可以在“为组件的 Props 设定类型” 中查看更多相关的例子。
 type AppProps = {
   message: string;
-}; /* use `interface` if exporting so that consumers can extend */
+}; /* 如果也需要导出这个类型的话，请使用 “interface”。 */
 
-// Easiest way to declare a Function Component; return type is inferred.
+// 声明一个函数组件最简单的方式；返回值的类型是推断出来的。
 const App = ({ message }: AppProps) => <div>{message}</div>;
 
-// you can choose annotate the return type so an error is raised if you accidentally return some other type
+// 你可以选择指定返回值的类型，这样的话如果你不小心返回了其他类型，程序就会报错。
 const App = ({ message }: AppProps): JSX.Element => <div>{message}</div>;
 
-// you can also inline the type declaration; eliminates naming the prop types, but looks repetitive
+// 你也可以直接以内联的方式给出 props 的类型，这样省去了给类型起名字的麻烦，但是看起来会有些重复
 const App = ({ message }: { message: string }) => <div>{message}</div>;
 ```
 
-> Tip: You might use [Paul Shen's VS Code Extension](https://marketplace.visualstudio.com/items?itemName=paulshen.paul-typescript-toolkit) to automate the type destructure declaration (incl a [keyboard shortcut](https://twitter.com/_paulshen/status/1392915279466745857?s=20)).
+> 提示：你可以使用[Paul Shen 开发的 VS Code 扩展](https://marketplace.visualstudio.com/items?itemName=paulshen.paul-typescript-toolkit) 来实现类型解构声明的自动化 (包括一个[键盘快捷键](https://twitter.com/_paulshen/status/1392915279466745857?s=20)).
 
 <details>
 
-<summary><b>Why is <code>React.FC</code> discouraged? What about <code>React.FunctionComponent</code>/<code>React.VoidFunctionComponent</code>?</b></summary>
+<summary><b>为什么不鼓励 <code>React.FC</code> 这种写法？为什么不使用 <code>React.FunctionComponent</code> 或 <code>React.VoidFunctionComponent</code> 呢？</b></summary>
 
-You may see this in many React+TypeScript codebases:
+你也许在很多 React+TypeScript 代码仓库中见到过如下的代码：
 
 ```tsx
 const App: React.FunctionComponent<{ message: string }> = ({ message }) => (
@@ -35,20 +35,20 @@ const App: React.FunctionComponent<{ message: string }> = ({ message }) => (
 );
 ```
 
-However, the general consensus today is that `React.FunctionComponent` (or the shorthand `React.FC`) is [discouraged](https://github.com/facebook/create-react-app/pull/8177). This is a nuanced opinion of course, but if you agree and want to remove `React.FC` from your codebase, you can use [this jscodeshift codemod](https://github.com/gndelia/codemod-replace-react-fc-typescript).
+然而，如今大家的共识是[不太推荐](https://github.com/facebook/create-react-app/pull/8177)使用 `React.FunctionComponent` (或是它的简写 `React.FC` )。当然这是一个无足轻重的意见，不过如果你认可这种共识，你可以使用[jscodeshift 的 codemod](https://github.com/gndelia/codemod-replace-react-fc-typescript) 来移除代码仓库里所有的 `React.FC` 。
 
-Some differences from the "normal function" version:
+使用 React.FC 与使用 “普通函数” 的一些不同点：
 
-- `React.FunctionComponent` is explicit about the return type, while the normal function version is implicit (or else needs additional annotation).
+- `React.FunctionComponent` 对于返回值的类型是明确的，而普通函数是自动推导的的（除非额外注明）。
 
-- It provides typechecking and autocomplete for static properties like `displayName`, `propTypes`, and `defaultProps`.
+- 对于 `displayName`、`propTypes` 和 `defaultProps` 这些静态属性，它提供了类型检查和自动补全。
 
-  - Note that there are some known issues using `defaultProps` with `React.FunctionComponent`. See [this issue for details](https://github.com/typescript-cheatsheets/react/issues/87). We maintain a separate `defaultProps` section you can also look up.
+- 值得一提的是在同时使用 `defaultProps` 和 `React.FunctionComponent` 时，存在一些已知的问题。点击这里可以查看[问题的详情](https://github.com/typescript-cheatsheets/react/issues/87)。我们也为 `defaultProps` 提供了单独的一个章节，供你查看。
 
-- Before the [React 18 type updates](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/56210), `React.FunctionComponent` provided an implicit definition of `children` (see below), which was heavily debated and is one of the reasons [`React.FC` was removed from the Create React App TypeScript template](https://github.com/facebook/create-react-app/pull/8177).
+- 在 [React 18 类型更新](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/56210)之前, `React.FunctionComponent` 中对于 `children` 提供了一个隐含的定义（参见下文），这一点广受争议并且也是 [`React.FC` 被从 Create React App TypeScript template 中移除](https://github.com/facebook/create-react-app/pull/8177) 的原因之一。
 
 ```tsx
-// before React 18 types
+// 在 React 18 类型更新之前
 const Title: React.FunctionComponent<{ title: string }> = ({
   children,
   title,
@@ -56,17 +56,17 @@ const Title: React.FunctionComponent<{ title: string }> = ({
 ```
 
 <details>
-<summary>(Deprecated)<b>Using <code>React.VoidFunctionComponent</code> or <code>React.VFC</code> instead</b></summary>
+<summary>（已废弃的写法）<b>使用 <code>React.VoidFunctionComponent</code> 或 <code>React.VFC</code> </b></summary>
 
-In [@types/react 16.9.48](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/46643), the `React.VoidFunctionComponent` or `React.VFC` type was added for typing `children` explicitly.
-However, please be aware that `React.VFC` and `React.VoidFunctionComponent` were deprecated in React 18 (https://github.com/DefinitelyTyped/DefinitelyTyped/pull/59882), so this interim solution is no longer necessary or recommended in React 18+.
+在 [@types/react 16.9.48](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/46643) 中，增加了 `React.VoidFunctionComponent` 和 `React.VFC` 用来提供输入 `children` 时的补全。
+然而，请注意 `React.VFC` 和 `React.VoidFunctionComponent` [在 React 18 中已被废弃](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/59882)，因此这个临时的解决方案在 React 18 或更新版本中已不再需要，也不推荐使用。
 
-Please use regular function components or `React.FC` instead.
+请使用普通的函数组件或是 `React.FC` 。
 
 ```ts
 type Props = { foo: string };
 
-// OK now, in future, error
+// 现在可以这么写，但是未来可能会报错
 const FunctionComponent: React.FunctionComponent<Props> = ({
   foo,
   children,
@@ -78,7 +78,7 @@ const FunctionComponent: React.FunctionComponent<Props> = ({
   ); // OK
 };
 
-// Error now, in future, deprecated
+// 现在就会报错，未来会彻底废弃
 const VoidFunctionComponent: React.VoidFunctionComponent<Props> = ({
   foo,
   children,
@@ -94,18 +94,18 @@ const VoidFunctionComponent: React.VoidFunctionComponent<Props> = ({
 
 </details>
 
-- _In the future_, it may automatically mark props as `readonly`, though that's a moot point if the props object is destructured in the parameter list.
+- _在未来_， props 可能会自动被标记为 `只读` 的，不过如果 props 对象在参数列表中被解构，这就没什么意义了。
 
-In most cases it makes very little difference which syntax is used, but you may prefer the more explicit nature of `React.FunctionComponent`.
+在大多数情况下，使用不同的语法并没有很大的区别，但是你可能更喜欢使用 `React.FunctionComponent` ，因为它具有更明确的类型定义。
 
 </details>
 
 <details>
-<summary><b>Minor Pitfalls</b></summary>
+<summary><b>小陷阱</b></summary>
 
-These patterns are not supported:
+下面的写法是错误的：
 
-**Conditional rendering**
+**条件渲染**
 
 ```tsx
 const MyConditionalComponent = ({ shouldRender = false }) =>
@@ -113,7 +113,7 @@ const MyConditionalComponent = ({ shouldRender = false }) =>
 const el = <MyConditionalComponent />; // throws an error
 ```
 
-This is because due to limitations in the compiler, function components cannot return anything other than a JSX expression or `null`, otherwise it complains with a cryptic error message saying that the other type is not assignable to `Element`.
+原因在于由于编译器的限制，函数组件只能返回 JSX 表达式或 `null`，否则会出现一个难以令人理解的报错，报错内容是其他类型不能分配给 `Element`。
 
 **Array.fill**
 
@@ -122,12 +122,12 @@ const MyArrayComponent = () => Array(5).fill(<div />);
 const el2 = <MyArrayComponent />; // throws an error
 ```
 
-Unfortunately just annotating the function type will not help so if you really need to return other exotic types that React supports, you'd need to perform a type assertion:
+不幸的是，仅仅通过注解函数类型是没有用的，如果你真的需要返回 React 支持的其他类型，你需要显式地指明：
 
 ```tsx
 const MyArrayComponent = () => Array(5).fill(<div />) as any as JSX.Element;
 ```
 
-[See commentary by @ferdaber here](https://github.com/typescript-cheatsheets/react/issues/57).
+[参见 @ferdaber 的评论](https://github.com/typescript-cheatsheets/react/issues/57).
 
 </details>
