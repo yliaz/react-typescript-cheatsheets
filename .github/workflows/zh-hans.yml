@@ -35,7 +35,7 @@ jobs:
           # scp参数
           ARGS: "-avzr --delete"
           # 源目录，编译后生成的文件目录
-          SOURCE: "./website/build/zh-Hans"
+          SOURCE: "./website/build"
           # 服务器ip：换成你的服务器IP
           REMOTE_HOST: "101.32.26.151"
           # 用户
