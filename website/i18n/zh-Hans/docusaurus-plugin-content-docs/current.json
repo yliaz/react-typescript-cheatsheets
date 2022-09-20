@@ -1,0 +1,34 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.docs.category.Basic": {
+    "message": "基础篇",
+    "description": "The label for category Basic in sidebar docs"
+  },
+  "sidebar.docs.category.Getting Started": {
+    "message": "开始上手",
+    "description": "The label for category Getting Started in sidebar docs"
+  },
+  "sidebar.docs.category.Troubleshooting Handbook": {
+    "message": "Troubleshooting Handbook",
+    "description": "The label for category Troubleshooting Handbook in sidebar docs"
+  },
+  "sidebar.docs.category.Recommendations": {
+    "message": "Recommendations",
+    "description": "The label for category Recommendations in sidebar docs"
+  },
+  "sidebar.docs.category.HOC": {
+    "message": "HOC",
+    "description": "The label for category HOC in sidebar docs"
+  },
+  "sidebar.docs.category.Advanced": {
+    "message": "Advanced",
+    "description": "The label for category Advanced in sidebar docs"
+  },
+  "sidebar.docs.category.Migration": {
+    "message": "Migration",
+    "description": "The label for category Migration in sidebar docs"
+  }
+}

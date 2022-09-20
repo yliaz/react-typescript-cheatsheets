@@ -1,0 +1,22 @@
+{
+  "title": {
+    "message": "React TypeScript 作弊表",
+    "description": "The title in the navbar"
+  },
+  "item.label.Docs": {
+    "message": "文档",
+    "description": "Navbar item with label Docs"
+  },
+  "item.label.Help": {
+    "message": "帮助",
+    "description": "Navbar item with label Help"
+  },
+  "item.label.Discord": {
+    "message": "Discord",
+    "description": "Navbar item with label Discord"
+  },
+  "item.label.Contributors": {
+    "message": "贡献者",
+    "description": "Navbar item with label Contributors"
+  }
+}

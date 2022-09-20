@@ -5,6 +5,8 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 
 import Layout from "@theme/Layout";
 
+import Translate, { translate } from "@docusaurus/Translate";
+
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
@@ -16,21 +18,39 @@ export default function Home() {
       <div className="hero text--center">
         <div className="container ">
           <div className="padding-vert--md">
-            <h1 className="hero__title">{siteConfig.title}</h1>
-            <p className="hero__subtitle">{siteConfig.tagline}</p>
+            <h1 className="hero__title">
+              <Translate
+                id="homepage.siteTitle"
+                values={{
+                  siteTitle: <>{siteConfig.title}</>,
+                }}
+              >
+                {"{siteTitle}"}
+              </Translate>
+            </h1>
+            <p className="hero__subtitle">
+              <Translate
+                id="homepage.siteTagLine"
+                values={{
+                  siteTagLine: <>{siteConfig.tagline}</>,
+                }}
+              >
+                {"{siteTagLine}"}
+              </Translate>
+            </p>
           </div>
           <div className="homePageBtns">
             <Link
               to={useBaseUrl(siteConfig.customFields.firstDoc)}
               className="button button--lg button--outline button--primary"
             >
-              Getting started
+              <Translate>Getting started</Translate>
             </Link>
             <Link
               to={"https://discord.gg/wTGS5z9"}
               className="button button--lg button--outline button--secondary"
             >
-              Join Official Discord
+              <Translate>Join Official Discord</Translate>
             </Link>
           </div>
         </div>

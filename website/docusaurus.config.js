@@ -84,6 +84,10 @@ module.exports = {
           label: "Contributors",
           position: "right",
         },
+        {
+          type: "localeDropdown",
+          position: "right",
+        },
         // {to: 'blog', label: 'Blog', position: 'right'},
       ],
     },
@@ -190,5 +194,15 @@ module.exports = {
     users,
     addUserUrl:
       "https://github.com/typescript-cheatsheets/react/blob/main/website/docusaurus.config.js",
+  },
+
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "zh-Hans"],
+    localeConfigs: {
+      en: {
+        htmlLang: "en-GB",
+      },
+    },
   },
 };
