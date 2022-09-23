@@ -17,7 +17,7 @@ module.exports = {
   title: "React TypeScript Cheatsheets", // Title for your website.
   tagline:
     "Cheatsheets for experienced React developers getting started with TypeScript",
-  url: "https://react-typescript-cheatsheet.netlify.app/", // Your website URL
+  url: "https://react-typescript-cheatsheet.netlify.app", // Your website URL
   baseUrl: "/",
   projectName: "react-typescript-cheatsheet",
   organizationName: "typescript-cheatsheets",
@@ -178,7 +178,7 @@ module.exports = {
     },
 
     algolia: {
-      apiKey: "e1c87cdc9c52f8ccf84ceb7f9e18bcd3",
+      apiKey: "9a22585d1841d2fa758da919cd08a764",
       indexName: "react-typescript-cheatsheet",
       appId: "J65EL4UPXZ",
       algoliaOptions: {
